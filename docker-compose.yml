@@ -20,7 +20,7 @@ services:
         build:
             context: .
             dockerfile: ./apithemovieorg/Dockerfile
-        image: 'herlandio/api1'
+        image: 'herlandio/api'
         ports:
             - 8000:8000
         volumes:
