@@ -12,7 +12,7 @@ Windows: `copy .env.example .env` <br>
 `php artisan key:generate` <br>
 `php artisan serve` <br>
 
-> ReatcJS: <br>
+> ReactJS: <br>
 
 `yarn install` <br>
 `yarn start` <br>
