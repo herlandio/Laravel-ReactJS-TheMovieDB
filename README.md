@@ -1,4 +1,4 @@
-# TheMovieDBLaravelReactJS
+# API TheMovieDB with Laravel and ReactJS
 
 > Clone the project: <br>
 
