@@ -15,7 +15,6 @@ class ApiTheMovie extends Controller
      */
     public function discover()
     {
-        header('Access-Control-Allow-Origin: *');
         $response = Http::get("{$this->apiBase}discover/movie?api_key={$this->key}&language=en-US&sort_by=popularity.desc&page=1");
         return $response->json()['results'];
     }
@@ -26,7 +25,6 @@ class ApiTheMovie extends Controller
      */
     public function movieById($id)
     {
-        header('Access-Control-Allow-Origin: *');
         $response = Http::get("{$this->apiBase}movie/{$id}?api_key={$this->key}");
         return $response->json();
     }
@@ -37,7 +35,6 @@ class ApiTheMovie extends Controller
      */
     public function search($query)
     {
-        header('Access-Control-Allow-Origin: *');
         $response = Http::get("{$this->apiBase}search/movie?api_key={$this->key}&query={$this->clearQuery($query)}");
         return $response->json()['results'];
     }

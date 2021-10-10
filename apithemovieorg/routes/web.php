@@ -14,10 +14,4 @@ use App\Http\Controllers\ApiTheMovie;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/api');
-});
 
-Route::get('/api', [ApiTheMovie::class, 'discover']);
-Route::get('/movieById/{id}', [ApiTheMovie::class, 'movieById']);
-Route::get('/search/{query}', [ApiTheMovie::class, 'search']);
