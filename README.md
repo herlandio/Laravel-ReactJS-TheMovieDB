@@ -4,22 +4,41 @@ https://reactthemoviedb.herokuapp.com/
 
 > Clone the project: <br>
 
-`git clone https://github.com/herlandio/TheMovieDBLaravelReactJS`
+```
+git clone https://github.com/herlandio/TheMovieDBLaravelReactJS
+```
 
 > Laravel: <br>
 
-`composer install` <br>
+```
+composer install
+```
     
-   - Linux: <br>
-        `cp .env.example .env` <br>
+- Linux:
+        
+```
+cp .env.example .env
+```
 
-   - Windows: <br> 
-        `copy .env.example .env` <br>
+- Windows: 
 
-`php artisan key:generate` <br>
-`php artisan serve` <br>
+```
+copy .env.example .env
+```
 
-> ReactJS: <br>
+```
+php artisan key:generate
+```
 
-`yarn install` <br>
-`yarn start` <br>
+```
+php artisan serve
+```
+
+> ReactJS:
+
+```
+yarn install
+```
+```
+yarn start
+```
