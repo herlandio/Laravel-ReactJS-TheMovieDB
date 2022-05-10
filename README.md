@@ -5,7 +5,7 @@
 > Clone the project: <br>
 
 ```
-git clone https://github.com/herlandio/TheMovieDBLaravelReactJS
+git clone https://github.com/herlandio/Laravel-ReactJS-TheMovieDB
 ```
 
 > Laravel: <br>
