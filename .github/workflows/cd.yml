@@ -9,7 +9,7 @@ on:
 env:
   
   REGISTRY: docker.io
-  IMAGE: herlandio7/app-themoviedb
+  IMAGE: herlandio7/app-themovieorg
   
   DOCKERHUB_USER: ${{ secrets.DOCKER_USER }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKER_TOKEN }}
@@ -60,7 +60,7 @@ jobs:
       uses: akhileshns/heroku-deploy@v3.12.12
       with:
         heroku_api_key: ${{ env.HEROKU_API_KEY }}
-        heroku_app_name: app-themoviedb
+        heroku_app_name: app-themovieorg
         heroku_email: ${{ env.HEROKU_EMAIL }}
         usedocker: true
         docker_build_args: |
