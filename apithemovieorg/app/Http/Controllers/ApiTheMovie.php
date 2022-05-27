@@ -12,7 +12,7 @@ class ApiTheMovie extends Controller
 
     public function __construct()
     {
-        $this->key = env('M_TOKEN');
+        $this->key = "4ec327e462149c3710d63be84b81cf4f";
     }
 
     /**
