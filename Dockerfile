@@ -29,7 +29,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /app
 
-COPY . .
+COPY ./apithemovieorg .
 
 RUN composer install --optimize-autoloader --no-dev --ignore-platform-reqs
 
