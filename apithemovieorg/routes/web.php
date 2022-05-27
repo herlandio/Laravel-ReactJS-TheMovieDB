@@ -14,4 +14,6 @@ use App\Http\Controllers\ApiTheMovie;
 |
 */
 
-
+Route::get('/', function(){
+    return view('index');
+});

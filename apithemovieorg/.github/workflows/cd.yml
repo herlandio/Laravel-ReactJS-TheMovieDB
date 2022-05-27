@@ -1,0 +1,32 @@
+name: ci/cd
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+
+  APP_TOKEN: ${{secrets.M_TOKEN}}
+
+jobs:
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ env.HEROKU_API_KEY }}
+        heroku_app_name: app-themovieorg
+        heroku_email: ${{ env.HEROKU_EMAIL }}
+        usedocker: true
+        docker_build_args: |
+          ARG_TOKEN
+      env:
+        ARG_TOKEN: ${{ env.APP_TOKEN }}
