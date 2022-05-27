@@ -7,6 +7,12 @@ on:
     branches: [main]
 
 env:
+  
+  REGISTRY: docker.io
+  IMAGE: herlandio7/app-themoviedb
+  
+  DOCKERHUB_USER: ${{ secrets.DOCKER_USER }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
@@ -14,7 +20,39 @@ env:
   APP_TOKEN: ${{secrets.M_TOKEN}}
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to Docker Hub
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@v2
+      with:
+        username: ${{ env.DOCKERHUB_USER }}
+        password: ${{ env.DOCKERHUB_TOKEN }}
+    
+    - id: meta
+      uses: docker/metadata-action@v3.6.0
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE }}
+        tags: type=sha,format=long 
+
+    - name: Build and Push container images
+      uses: docker/build-push-action@v2
+      with:
+        platforms: linux/amd64
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        
   deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -22,7 +60,7 @@ jobs:
       uses: akhileshns/heroku-deploy@v3.12.12
       with:
         heroku_api_key: ${{ env.HEROKU_API_KEY }}
-        heroku_app_name: app-themovieorg
+        heroku_app_name: app-themoviedb
         heroku_email: ${{ env.HEROKU_EMAIL }}
         usedocker: true
         docker_build_args: |
