@@ -10,8 +10,13 @@ class ApiTheMovie extends Controller
     /**
      * Sim eu deixei a key aqui simplesmente porque eu quis mesmo, eu poderia deixar apenas a instrução para a pessoa adquirir uma, porem podem usar essa
      */
-    private $key = "4ec327e462149c3710d63be84b81cf4f";
+    private $key;
     private $apiBase = 'https://api.themoviedb.org/3/';
+
+    public function __construct()
+    {
+        $this->key = env("M_TOKEN");
+    }
 
     /**
      * @return array :: discover movies

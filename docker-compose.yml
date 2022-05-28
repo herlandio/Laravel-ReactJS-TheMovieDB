@@ -2,5 +2,7 @@ services:
   api:
     build:
       context: .
+    env_file:
+      - ./apithemovieorg/.env
     ports:
       - "8000:8000"
