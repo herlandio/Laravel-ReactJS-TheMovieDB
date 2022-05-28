@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Http;
 
 class ApiTheMovie extends Controller
 {
-    private $key;
+    /**
+     * Sim eu deixei a key aqui simplesmente porque eu quis mesmo, eu poderia deixar apenas a instrução para a pessoa adquirir uma, porem podem usar essa
+     */
+    private $key = "4ec327e462149c3710d63be84b81cf4f";
     private $apiBase = 'https://api.themoviedb.org/3/';
-
-    public function __construct()
-    {
-        $this->key = "4ec327e462149c3710d63be84b81cf4f";
-    }
 
     /**
      * @return array :: discover movies

@@ -1,44 +1,18 @@
-# API TheMovieDB with Laravel and ReactJS
+# API Laravel e ReactJS
 
-[TheMovieDB](https://reactthemoviedb.herokuapp.com/)
-
-> Clone the project: <br>
+> Clone o projeto: <br>
 
 ```
 git clone https://github.com/herlandio/Laravel-ReactJS-TheMovieDB
 ```
 
-> Laravel: <br>
+> Para executar a aplicação basta: <br>
 
 ```
-composer install
+docker-compose up -d
 ```
-    
-- Linux:
-        
-```
-cp .env.example .env
-```
-
-- Windows: 
+- Acesse o endereço abaixo para ver a aplicação, após executar o comando acima:
 
 ```
-copy .env.example .env
-```
-
-```
-php artisan key:generate
-```
-
-```
-php artisan serve
-```
-
-> ReactJS:
-
-```
-yarn install
-```
-```
-yarn start
+http:localhost:8000
 ```

@@ -1,9 +1,5 @@
 FROM php
 
-ARG ARG_TOKEN
-
-ENV M_TOKEN = $ARG_TOKEN
-
 RUN apt-get update && \
     apt-get install -y \
         zlib1g-dev \
