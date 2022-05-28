@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\Http;
 
 class ApiTheMovie extends Controller
 {
-    /**
-     * Sim eu deixei a key aqui simplesmente porque eu quis mesmo, eu poderia deixar apenas a instrução para a pessoa adquirir uma, porem podem usar essa
-     */
     private $key;
     private $apiBase = 'https://api.themoviedb.org/3/';
 
