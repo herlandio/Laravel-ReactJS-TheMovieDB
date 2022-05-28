@@ -2,5 +2,7 @@ services:
   api:
     build:
       context: .
+    environment:
+      M_TOKEN: ${ARG_TOKEN}
     ports:
       - "8000:8000"
