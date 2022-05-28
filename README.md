@@ -11,7 +11,7 @@ git clone https://github.com/herlandio/Laravel-ReactJS-TheMovieDB
 ```
 docker-compose up -d
 ```
-- Acesse o endereço abaixo para ver a aplicação, após executar o comando acima:
+> Acesse o endereço abaixo para ver a aplicação, após executar o comando acima:
 
 ```
 http:localhost:8000
