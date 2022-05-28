@@ -1,5 +1,9 @@
 FROM php
 
+ARG PORT=8000
+ARG ARG_TOKEN
+ENV M_TOKEN=$ARG_TOKEN
+
 RUN apt-get update && \
     apt-get install -y \
         zlib1g-dev \
@@ -39,6 +43,6 @@ RUN php artisan route:cache
 
 RUN php artisan view:cache
 
-CMD php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
 
 EXPOSE 8000
