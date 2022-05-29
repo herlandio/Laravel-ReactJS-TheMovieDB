@@ -17,7 +17,3 @@ use App\Http\Controllers\ApiTheMovie;
 Route::get('/', function(){
     return view('index');
 });
-
-Route::fallback(function () {
-    return redirect("index");
-});
