@@ -14,7 +14,7 @@ export function Detail(props) {
     return (
         <div className="container-fluid bg-light">
             <div className="row justify-content-center">
-                <div className="col-8 bg-white p-4 shadow m-4 rounded">
+                <div className="col-10 bg-white p-4 shadow m-4 rounded">
                     <h2 className="text-secondary text-start lead pt-3 pb-3">Detalhes</h2>
 
                     <div className="row">

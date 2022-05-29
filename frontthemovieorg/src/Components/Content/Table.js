@@ -27,7 +27,7 @@ export function Table(props) {
                 {
                     DataTable.movie.map((i) =>
                         <tr key={i.id}>
-                            <td className="align-middle text-center"><img className="img-fluid" src={`${DataTable.image}/${i.poster_path}`} alt={i.original_title} width="100"/></td>
+                            <td className="align-middle text-center"><img src={`${DataTable.image}/${i.poster_path}`} alt={i.original_title} width="75"/></td>
                             <td className="align-middle text-center"><b>{i.original_title}</b></td>
                             <td className="align-middle text-center">{i.overview.substring(0, 30)}...</td>
                             <td className="align-middle text-center">{convertDate(i.release_date)}</td>
