@@ -15,7 +15,7 @@ class ApiTheMovie extends Controller
      */
     public function __construct()
     {
-        $this->key = env("APP_KEY");
+        $this->key = "TOKEN_M";
         var_dump($this->key);
     }
 
