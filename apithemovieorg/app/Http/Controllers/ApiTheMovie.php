@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class ApiTheMovie extends Controller
 {
+
     private $key;
     private $apiBase = 'https://api.themoviedb.org/3/';
 
@@ -15,8 +16,7 @@ class ApiTheMovie extends Controller
      */
     public function __construct()
     {
-        $this->key = env("APP_KEY");
-        var_dump($this->key);
+        $this->key = env("TOKEN_M");
     }
 
     /**
