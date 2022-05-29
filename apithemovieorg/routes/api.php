@@ -15,4 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return \Illuminate\Support\Facades\Redirect::to('/api/start');
+});
 
+Route::get('/start', [ApiTheMovie::class, 'discover']);
+Route::get('/movieById/{id}', [ApiTheMovie::class, 'movieById']);
+Route::get('/search/{query}', [ApiTheMovie::class, 'search']);
