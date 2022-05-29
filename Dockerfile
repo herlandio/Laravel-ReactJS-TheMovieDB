@@ -1,6 +1,8 @@
 FROM php
 
 ARG PORT=8000
+ARG ARG_TOKEN
+ENV TOKEN_M=$ARG_TOKEN
 
 RUN apt-get update && \
     apt-get install -y \
