@@ -35,17 +35,17 @@ RUN cp .env.example .env
 
 RUN php artisan key:generate
 
-RUN php artisan config:clear
-
-RUN php artisan route:clear
-
-RUN php artisan view:clear
-
 RUN php artisan config:cache
 
 RUN php artisan route:cache
 
 RUN php artisan view:cache
+
+RUN php artisan config:clear
+
+RUN php artisan route:clear
+
+RUN php artisan view:clear
 
 CMD php artisan serve --host=0.0.0.0 --port=$PORT
 
