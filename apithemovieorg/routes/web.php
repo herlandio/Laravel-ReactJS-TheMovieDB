@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\ApiTheMovie;
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +14,10 @@ use App\Http\Controllers\ApiTheMovie;
 |
 */
 
-Route::get('/', function() {
-    return view('index');
+Route::get('/', function () {
+    return \Illuminate\Support\Facades\Redirect::to('/start');
 });
 
-Route::get('/details/{id}', function() {
-    return view('index');
-});
-
-Route::get('/search', function() {
-    return view('index');
-});
+Route::get('/start', [ApiTheMovie::class, 'discover']);
+Route::get('/movieById/{id}', [ApiTheMovie::class, 'movieById']);
+Route::get('/search/{query}', [ApiTheMovie::class, 'search']);
