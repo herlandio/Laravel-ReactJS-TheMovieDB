@@ -7,8 +7,6 @@ on:
     branches: [main]
 
 env:
-
-  APP_TOKEN: ${{secrets.M_TOKEN}}
   
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
@@ -25,7 +23,3 @@ jobs:
         heroku_app_name: api-themovieorg
         heroku_email: ${{ env.HEROKU_EMAIL }}
         usedocker: true
-        docker_build_args: |
-          ARG_TOKEN
-      env:
-        ARG_TOKEN: ${{ env.APP_TOKEN }}
