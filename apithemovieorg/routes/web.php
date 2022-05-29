@@ -17,3 +17,11 @@ use App\Http\Controllers\ApiTheMovie;
 Route::get('/', function(){
     return view('index');
 });
+
+Route::get('/details/{id}', function(){
+    return view('index');
+});
+
+Route::get('/search', function(){
+    return view('index');
+});
