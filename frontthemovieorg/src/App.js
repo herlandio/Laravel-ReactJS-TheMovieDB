@@ -7,7 +7,7 @@ import ComponentDetails from "./Components/Content/Details/ComponentDetails";
 import ComponentSearch from "./Components/Content/Search/ComponentSearch";
 
 function App() {
-  const Name = 'TestQuikDev';
+  const Name = 'Test themoviedb.org';
   const imageBase = 'https://image.tmdb.org/t/p/w500'
 
   return (

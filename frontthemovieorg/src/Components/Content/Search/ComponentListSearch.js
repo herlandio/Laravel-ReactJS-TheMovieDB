@@ -10,7 +10,7 @@ function ComponentListSearch(props) {
 
     return (
         <div className="row justify-content-center pt-3 bg-light">
-            <div className="col-10 p-4">
+            <div className="col-8 p-4">
                 <Table image={propsObj.image} movie={propsObj.listMs}/>
             </div>
         </div>

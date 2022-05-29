@@ -8,7 +8,7 @@ export function Input(props) {
     return (
         <div>
             <div className="row justify-content-center bg-dark">
-                <div className="col-10 p-4">
+                <div className="col-8 pb-4">
                     <form>
                         <input className="form-control"
                                type="search"

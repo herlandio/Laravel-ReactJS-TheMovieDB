@@ -3,32 +3,35 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
+import convertDate from "../../help/help";
+
 export function Table(props) {
     const DataTable = {
         image: props.image,
         movie: props.movie
     }
+
     return (
         <div className="table-responsive">
             <table className="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Data</th>
-                    <th scope="col">Ação</th>
+                    <th scope="col" className="text-center">#</th>
+                    <th scope="col" className="text-center">Nome</th>
+                    <th scope="col" className="text-center">Descrição</th>
+                    <th scope="col" className="text-center">Data</th>
+                    <th scope="col" className="text-center">Ação</th>
                 </tr>
                 </thead>
                 <tbody>
                 {
                     DataTable.movie.map((i) =>
                         <tr key={i.id}>
-                            <td><img src={`${DataTable.image}/${i.poster_path}`} alt={i.original_title} width="50"/></td>
-                            <td>{i.original_title}</td>
-                            <td>{i.overview}</td>
-                            <td>{i.release_date}</td>
-                            <td className="text-center">
+                            <td className="align-middle text-center"><img className="img-fluid" src={`${DataTable.image}/${i.poster_path}`} alt={i.original_title} width="100"/></td>
+                            <td className="align-middle text-center"><b>{i.original_title}</b></td>
+                            <td className="align-middle text-center">{i.overview.substring(0, 30)}...</td>
+                            <td className="align-middle text-center">{convertDate(i.release_date)}</td>
+                            <td className="align-middle text-center">
                                 <Link to={`details/${i.id}`}><FontAwesomeIcon icon={faSearch}/></Link>
                             </td>
                         </tr>
