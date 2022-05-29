@@ -7,7 +7,7 @@ function ComponentMain(props) {
     return (
         <div className="container-fluid bg-light">
             <div className="row justify-content-center">
-                <div className="col-10 bg-white p-4 shadow m-4 rounded">
+                <div className="col-lg-8 col-sm-8 col-md-8 bg-white p-4 shadow m-4 rounded">
                     <ComponentListMovies image={image}/>
                 </div>
             </div>
