@@ -1,4 +1,4 @@
-const apiBase = "https://api-themovieorg.herokuapp.com";
+const apiBase = "http://localhost:8000";
 
 export async function fetchJsonApi() {
     const response = await fetch(`${apiBase}/api/start`);

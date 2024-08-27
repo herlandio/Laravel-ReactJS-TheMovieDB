@@ -29,6 +29,8 @@ WORKDIR /app
 
 COPY ./apithemovieorg .
 
+RUN composer update
+
 RUN composer install --optimize-autoloader --no-dev --ignore-platform-reqs
 
 RUN cp .env.example .env
