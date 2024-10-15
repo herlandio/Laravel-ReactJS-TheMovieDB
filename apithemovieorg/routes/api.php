@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ApiTheMovie;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ApiTheMovieController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {return \Illuminate\Support\Facades\Redirect::to('/api/start');});
-Route::get('/start', [ApiTheMovie::class, 'discover']);
-Route::get('/movieById/{id}', [ApiTheMovie::class, 'movieById']);
-Route::get('/search/{query}', [ApiTheMovie::class, 'search']);
+Route::get('/start', [ApiTheMovieController::class, 'discover']);
+Route::get('/movieById/{id}', [ApiTheMovieController::class, 'movieById']);
+Route::get('/search/{query}', [ApiTheMovieController::class, 'search']);
