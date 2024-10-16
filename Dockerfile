@@ -36,6 +36,8 @@ COPY ./apithemovieorg ./
 
 RUN composer install --optimize-autoloader --no-dev --ignore-platform-reqs
 
+RUN composer update
+
 RUN cp .env.example .env \
     && php artisan key:generate
 

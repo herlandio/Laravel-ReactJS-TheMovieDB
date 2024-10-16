@@ -35,6 +35,14 @@ class MovieDTO
     {
         $this->validator = new MovieValidator();
 
+        $requiredFields = ['id', 'original_title', 'overview', 'release_date', 'vote_average', 'vote_count', 'original_language'];
+        
+        foreach ($requiredFields as $field) {
+            if (!array_key_exists($field, $data)) {
+                throw new \InvalidArgumentException("The {$field} is required.");
+            }
+        }
+
         $this->id = $this->validator->validateInt($data['id'], 'id');
         $this->title = $this->validator->validateString($data['original_title'], 'original_title');
         $this->overview = $this->validator->validateString($data['overview'], 'overview');

@@ -39,7 +39,7 @@ class ApiTheMovieController extends Controller
         try {
             $movies = $this->movieService->discover();
             return response()->json(array_map(fn($movie) => $movie->toArray(), $movies));
-        } catch (Exception $e) {
+        } catch (MovieServiceException $e) {
             throw new MovieServiceException($e->getMessage());
         }
     }
@@ -60,7 +60,7 @@ class ApiTheMovieController extends Controller
             return response()->json($movie->toArray());
         } catch (MovieNotFoundException $e) {
             return response()->json(['error' => $e->getMessage()], $e->getCode());
-        } catch (Exception $e) {
+        } catch (MovieServiceException $e) {
             throw new MovieServiceException($e->getMessage());
         }
     }
@@ -76,7 +76,7 @@ class ApiTheMovieController extends Controller
         try {
             $movies = $this->movieService->search($query);
             return response()->json(array_map(fn($movie) => $movie->toArray(), $movies));
-        } catch (Exception $e) {
+        } catch (MovieServiceException $e) {
             throw new MovieServiceException($e->getMessage());
         }
     }
