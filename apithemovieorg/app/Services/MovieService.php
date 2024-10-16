@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Services\DTO\MovieDTO;
+use App\Exceptions\MovieNotFoundException;
+use App\Exceptions\MovieServiceException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
@@ -35,10 +37,11 @@ class MovieService
      * Discover movies.
      *
      * @return array An array of MovieDTO objects representing discovered movies.
+     * @throws MovieServiceException if the API request fails.
      */
     public function discover(): array
     {
-        return Cache::remember('movies_discover', 3600, function () {
+        return Cache::remember('movies_discover', 3600, function (): array {
             $response = $this->makeRequest('discover/movie', [
                 'language' => 'en-US',
                 'sort_by' => 'popularity.desc',
@@ -54,16 +57,20 @@ class MovieService
      *
      * @param int $id The ID of the movie to retrieve.
      * @return MovieDTO|null A MovieDTO object representing the movie, or null if not found.
+     * @throws MovieNotFoundException if the movie is not found.
      */
     public function movieById(int $id): ?MovieDTO
     {
         if ($id <= 0) {
-            return null;
+            throw new MovieNotFoundException('Invalid movie ID provided.');
         }
 
-        return Cache::remember("movie_{$id}", 3600, function () use ($id) {
+        return Cache::remember("movie_{$id}", 3600, function () use ($id): MovieDTO {
             $response = $this->makeRequest("movie/{$id}");
-            return $response ? new MovieDTO($response) : null;
+            if (!$response) {
+                throw new MovieNotFoundException("Movie with ID {$id} not found.");
+            }
+            return new MovieDTO($response);
         });
     }
 
@@ -72,12 +79,17 @@ class MovieService
      *
      * @param string $query The search query for movies.
      * @return array An array of MovieDTO objects representing the search results.
+     * @throws MovieServiceException if the API request fails.
      */
     public function search(string $query): array
     {
         $response = $this->makeRequest('search/movie', [
             'query' => $this->clearQuery($query),
         ]);
+
+        if (!$response) {
+            throw new MovieServiceException('Failed to search for movies.');
+        }
 
         return $this->mapToDTOs($response['results'] ?? []);
     }
@@ -103,7 +115,7 @@ class MovieService
             return null;
         } catch (\Exception $e) {
             \Log::error("Error communicating with TheMovieDB: {$e->getMessage()}");
-            return null;
+            throw new MovieServiceException("Error communicating with TheMovieDB: {$e->getMessage()}");
         }
     }
 

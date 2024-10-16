@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Services\DTO;
 
-use InvalidArgumentException;
+use App\Services\Validators\MovieValidator;
 
 /**
  * Class MovieDTO
  *
  * Data Transfer Object for movie data.
- * This class is responsible for validating and storing movie information.
+ * This class is responsible for storing movie information.
  */
 class MovieDTO
 {
@@ -23,70 +23,26 @@ class MovieDTO
     public int $voteCount;
     public string $originalLanguage;
 
+    private MovieValidator $validator;
+
     /**
      * MovieDTO constructor.
      *
      * @param array $data An associative array containing movie data.
-     * @throws InvalidArgumentException if any of the fields are invalid.
+     * @throws \InvalidArgumentException if any of the fields are invalid.
      */
     public function __construct(array $data)
     {
-        $this->id = $this->validateInt($data['id'], 'id');
-        $this->title = $this->validateString($data['original_title'], 'original_title');
-        $this->overview = $this->validateString($data['overview'], 'overview');
-        $this->releaseDate = $this->validateString($data['release_date'], 'release_date');
-        $this->posterPath = $this->validateString($data['poster_path'] ?? '', 'poster_path');
-        $this->voteAverage = $this->validateFloat($data['vote_average'], 'vote_average');
-        $this->voteCount = $this->validateInt($data['vote_count'], 'vote_count');
-        $this->originalLanguage = $this->validateString($data['original_language'], 'original_language');
-    }
+        $this->validator = new MovieValidator();
 
-    /**
-     * Validate that the given value is a string.
-     *
-     * @param mixed $value The value to validate.
-     * @param string $field The name of the field being validated.
-     * @return string The validated string.
-     * @throws InvalidArgumentException if the value is not a string.
-     */
-    private function validateString($value, string $field): string
-    {
-        if (!is_string($value)) {
-            throw new InvalidArgumentException("The {$field} must be a string.");
-        }
-        return $value;
-    }
-
-    /**
-     * Validate that the given value is an integer.
-     *
-     * @param mixed $value The value to validate.
-     * @param string $field The name of the field being validated.
-     * @return int The validated integer.
-     * @throws InvalidArgumentException if the value is not an integer.
-     */
-    private function validateInt($value, string $field): int
-    {
-        if (!is_int($value) && !ctype_digit((string)$value)) {
-            throw new InvalidArgumentException("The {$field} must be an integer.");
-        }
-        return (int) $value;
-    }
-
-    /**
-     * Validate that the given value is a float.
-     *
-     * @param mixed $value The value to validate.
-     * @param string $field The name of the field being validated.
-     * @return float The validated float.
-     * @throws InvalidArgumentException if the value is not a float.
-     */
-    private function validateFloat($value, string $field): float
-    {
-        if (!is_float($value) && !is_numeric($value)) {
-            throw new InvalidArgumentException("The {$field} must be a float.");
-        }
-        return (float) $value;
+        $this->id = $this->validator->validateInt($data['id'], 'id');
+        $this->title = $this->validator->validateString($data['original_title'], 'original_title');
+        $this->overview = $this->validator->validateString($data['overview'], 'overview');
+        $this->releaseDate = $this->validator->validateString($data['release_date'], 'release_date');
+        $this->posterPath = $this->validator->validateString($data['poster_path'] ?? '', 'poster_path');
+        $this->voteAverage = $this->validator->validateFloat($data['vote_average'], 'vote_average');
+        $this->voteCount = $this->validator->validateInt($data['vote_count'], 'vote_count');
+        $this->originalLanguage = $this->validator->validateString($data['original_language'], 'original_language');
     }
 
     /**
