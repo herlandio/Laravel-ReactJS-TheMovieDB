@@ -54,7 +54,7 @@ class MovieDTO
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'original_title' => $this->title,
             'overview' => $this->overview,
             'release_date' => $this->releaseDate,
             'poster_path' => $this->posterPath,
