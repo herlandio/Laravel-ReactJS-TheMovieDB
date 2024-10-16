@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Services\MovieService;
 use Illuminate\Http\JsonResponse;
+use App\Exceptions\MovieNotFoundException;
+use App\Exceptions\MovieServiceException;
 
 /**
  * Class ApiTheMovieController
@@ -34,8 +36,12 @@ class ApiTheMovieController extends Controller
      */
     public function discover(): JsonResponse
     {
-        $movies = $this->movieService->discover();
-        return response()->json(array_map(fn($movie) => $movie->toArray(), $movies));
+        try {
+            $movies = $this->movieService->discover();
+            return response()->json(array_map(fn($movie) => $movie->toArray(), $movies));
+        } catch (Exception $e) {
+            throw new MovieServiceException($e->getMessage());
+        }
     }
 
     /**
@@ -46,8 +52,17 @@ class ApiTheMovieController extends Controller
      */
     public function movieById(int $id): JsonResponse
     {
-        $movie = $this->movieService->movieById($id);
-        return $movie ? response()->json($movie->toArray()) : response()->json(['error' => 'Movie not found'], 404);
+        try {
+            $movie = $this->movieService->movieById($id);
+            if (!$movie) {
+                throw new MovieNotFoundException();
+            }
+            return response()->json($movie->toArray());
+        } catch (MovieNotFoundException $e) {
+            return response()->json(['error' => $e->getMessage()], $e->getCode());
+        } catch (Exception $e) {
+            throw new MovieServiceException($e->getMessage());
+        }
     }
 
     /**
@@ -58,7 +73,11 @@ class ApiTheMovieController extends Controller
      */
     public function search(string $query): JsonResponse
     {
-        $movies = $this->movieService->search($query);
-        return response()->json(array_map(fn($movie) => $movie->toArray(), $movies));
+        try {
+            $movies = $this->movieService->search($query);
+            return response()->json(array_map(fn($movie) => $movie->toArray(), $movies));
+        } catch (Exception $e) {
+            throw new MovieServiceException($e->getMessage());
+        }
     }
 }
